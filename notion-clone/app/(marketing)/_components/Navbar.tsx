@@ -5,8 +5,10 @@ import { cn } from '@/lib/utils'
 import Logo from "./Logo";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useConvexAuth } from "convex/react";
-import { SignInButton} from '@clerk/clerk-react'
+import { SignInButton, UserButton} from '@clerk/clerk-react'
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/Spinner";
+import Link from "next/link";
 
 function Navbar() {
   const { isAuthenticated, isLoading} = useConvexAuth()
@@ -20,7 +22,7 @@ function Navbar() {
         <Logo />
         <div className="md:ml-auto md:justify-end justify-center w-full flex items-center gap-x-2">
             {isLoading && (
-              <p>Loading...</p>
+              <Spinner />
             )}
             {!isAuthenticated && !isLoading && (
               <>
@@ -34,6 +36,18 @@ function Navbar() {
                     Get Hotion Free
                   </Button>
                 </SignInButton>
+              </>
+            )}
+            {isAuthenticated && !isLoading && (
+              <>
+                <Button variant='ghost' size='sm' asChild> 
+                  <Link href='/documents'>
+                    Enter Hotion
+                  </Link>
+                </Button>
+                <UserButton
+                  afterSignOutUrl="/"
+                />
               </>
             )}
             <ModeToggle />
