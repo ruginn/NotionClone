@@ -15,14 +15,14 @@ import { useUser } from '@clerk/clerk-react'
 
 interface ItemProps {
     id?: Id<'documents'>
-    documentIcon: string
+    documentIcon?: string
     active?: boolean
     expanded?: boolean
     isSearch?: boolean
     level?: number
     onExpand?: () => void  
     label: string
-    onClick: () => void
+    onClick?: () => void
     icon: LucideIcon
 }
 
