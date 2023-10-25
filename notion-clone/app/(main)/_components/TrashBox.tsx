@@ -24,7 +24,7 @@ function TrashBox() {
   })
 
   const onClick = (documentsId: string) => {
-    router.push(`/document${documentsId}`)
+    router.push(`/documents/${documentsId}`)
   }
 
   const onRestore = (

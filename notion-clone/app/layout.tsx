@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-providers'
 import { ConvexClientProvider } from '@/components/providers/convex-providers'
 import {Toaster} from 'sonner'
+import { ModalProvider } from '@/components/providers/modal-providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -41,6 +42,7 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
             storageKey='hotion-theme'
           >
             <Toaster position='bottom-center'/>
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
