@@ -59,7 +59,7 @@ function Item({id, label, onClick, icon:Icon, documentIcon, active, expanded, is
             if(!expanded) {
                 onExpand?.()
             }
-            // router.push(`/document/${documentId}`)
+            router.push(`/documents/${documentId}`)
         })
         toast.promise(promise, {
             loading: 'Creating a new note...', 
@@ -85,7 +85,7 @@ function Item({id, label, onClick, icon:Icon, documentIcon, active, expanded, is
                 {documentIcon}
             </div>
         ): 
-         <Icon className='shrink-0 h-[18px] mr-2 text-muted-foreground'/>
+         <Icon className='shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground'/>
         }
         <span className='truncate'>
             {label}

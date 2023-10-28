@@ -5,7 +5,7 @@ import { ImageIcon, Smile, X } from "lucide-react"
 import { useMutation } from "convex/react"
 import TextareaAutosize from "react-textarea-autosize"
 
-// import { useCoverImage } from "@/hooks/use-cover-image"
+import { useCoverImage } from "@/hooks/user-cover-image"
 import { Doc } from "@/convex/_generated/dataModel"
 import { Button } from "@/components/ui/button"
 import { api } from "@/convex/_generated/api"
@@ -19,10 +19,7 @@ interface ToolbarProps {
   preview?: boolean;
 }
 
-export const Toolbar = ({
-  initialData,
-  preview
-}: ToolbarProps) => {
+export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const inputRef = useRef<ElementRef<"textarea">>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(initialData.title);
@@ -30,7 +27,7 @@ export const Toolbar = ({
   const update = useMutation(api.documents.update);
   const removeIcon = useMutation(api.documents.removeIcon);
 
-//   const coverImage = useCoverImage();
+  const coverImage = useCoverImage();
 
   const enableInput = () => {
     if (preview) return;
@@ -52,9 +49,7 @@ export const Toolbar = ({
     });
   };
 
-  const onKeyDown = (
-    event: React.KeyboardEvent<HTMLTextAreaElement>
-  ) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       disableInput();
@@ -113,7 +108,7 @@ export const Toolbar = ({
         )}
         {!initialData.coverImage && !preview && (
           <Button
-            // onClick={coverImage.onOpen}
+            onClick={coverImage.onOpen}
             className="text-muted-foreground text-xs"
             variant="outline"
             size="sm"
